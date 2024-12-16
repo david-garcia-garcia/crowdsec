@@ -19,7 +19,7 @@ import (
 
 	"github.com/goombaio/namegenerator"
 	log "github.com/sirupsen/logrus"
-	yaml "gopkg.in/yaml.v2"
+	yaml "gopkg.in/yaml.v3"
 
 	"github.com/crowdsecurity/crowdsec/pkg/cwversion/constraint"
 	"github.com/crowdsecurity/crowdsec/pkg/exprhelpers"
@@ -61,7 +61,7 @@ func LoadStages(stageFiles []Stagefile, pctx *UnixParserCtx, ectx EnricherCtx) (
 		defer yamlFile.Close()
 		//process the yaml
 		dec := yaml.NewDecoder(yamlFile)
-		dec.SetStrict(true)
+		dec.KnownFields(true)
 		nodesCount := 0
 		for {
 			node := Node{}

@@ -50,7 +50,6 @@ linters-settings:
           - "!**/pkg/database/*.go"
       yaml:
         files:
-          - "!**/pkg/acquisition/acquisition.go"
           - "!**/pkg/acquisition/acquisition_test.go"
           - "!**/pkg/acquisition/modules/appsec/appsec.go"
           - "!**/pkg/acquisition/modules/cloudwatch/cloudwatch.go"

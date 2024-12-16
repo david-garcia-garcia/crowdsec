@@ -14,7 +14,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	log "github.com/sirupsen/logrus"
 	tomb "gopkg.in/tomb.v2"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 
 	"github.com/crowdsecurity/go-cs-lib/trace"
 
@@ -233,7 +233,7 @@ func LoadAcquisitionFromFile(config *csconfig.CrowdsecServiceCfg, prom *csconfig
 		}
 
 		dec := yaml.NewDecoder(yamlFile)
-		dec.SetStrict(true)
+		dec.KnownFields(true)
 
 		idx := -1
 

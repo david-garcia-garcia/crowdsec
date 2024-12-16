@@ -16,7 +16,7 @@ import (
 	"github.com/goombaio/namegenerator"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/tomb.v2"
-	yaml "gopkg.in/yaml.v2"
+	yaml "gopkg.in/yaml.v3"
 
 	"github.com/crowdsecurity/crowdsec/pkg/alertcontext"
 	"github.com/crowdsecurity/crowdsec/pkg/csconfig"
@@ -256,7 +256,7 @@ func LoadBuckets(cscfg *csconfig.CrowdsecServiceCfg, hub *cwhub.Hub, scenarios [
 
 		defer bucketConfigurationFile.Close()
 		dec := yaml.NewDecoder(bucketConfigurationFile)
-		dec.SetStrict(true)
+		dec.KnownFields(true)
 
 		for {
 			bucketFactory := BucketFactory{}

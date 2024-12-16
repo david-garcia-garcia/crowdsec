@@ -17,7 +17,7 @@ import (
 	plugin "github.com/hashicorp/go-plugin"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/tomb.v2"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 
 	"github.com/crowdsecurity/go-cs-lib/csstring"
 	"github.com/crowdsecurity/go-cs-lib/slicetools"
@@ -356,7 +356,7 @@ func ParsePluginConfigFile(path string) ([]PluginConfig, error) {
 		return nil, fmt.Errorf("while opening %s: %w", path, err)
 	}
 	dec := yaml.NewDecoder(yamlFile)
-	dec.SetStrict(true)
+	dec.KnownFields(true)
 	for {
 		pc := PluginConfig{}
 		err = dec.Decode(&pc)

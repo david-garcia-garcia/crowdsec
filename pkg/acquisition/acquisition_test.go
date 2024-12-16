@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	tomb "gopkg.in/tomb.v2"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 
 	"github.com/crowdsecurity/go-cs-lib/cstest"
 
@@ -29,7 +29,7 @@ type MockSource struct {
 }
 
 func (f *MockSource) UnmarshalConfig(cfg []byte) error {
-	err := yaml.UnmarshalStrict(cfg, &f)
+	err := yaml.Unmarshal(cfg, &f)
 	if err != nil {
 		return err
 	}
